@@ -8,8 +8,8 @@ jobs:
       - checkout
       - run: sudo apt update && sudo apt upgrade
       - run: sudo apt install -y golang
-      - run: go get github.com/tcnksm/ghr
-      - run: cp /home/circleci/go/bin/ghr /usr/local/bin
+      - run: sudo go get github.com/tcnksm/ghr
+      - run: sudo cp /home/circleci/go/bin/ghr /usr/local/bin
       - run: which ghr
       # - run: cargo build --release
       # - run: mkdir /tmp/multit && cp target/release/multit /tmp/multit
