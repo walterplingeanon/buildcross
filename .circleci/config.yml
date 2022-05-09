@@ -6,7 +6,7 @@ jobs:
       - image: cimg/rust:1.60.0
     steps:
       - checkout
-      - run: apt install -y go
+      - run: sudo apt install -y go
       # - run: cargo build --release
       # - run: mkdir /tmp/release
       # - run: ls target/release/
