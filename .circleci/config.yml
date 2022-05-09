@@ -7,7 +7,6 @@ jobs:
     working_directory: /tmp
     steps:
       - checkout
-      - run: mkdir /tmp/artifacts
       - run: cargo build --release
       - store_artifacts:
-          path: /tmp/artifacts
+          path: /target/release/.multit
