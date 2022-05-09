@@ -11,4 +11,4 @@ jobs:
       - run: go get github.com/tcnksm/ghr
       - run: cargo build --release
       - run: mkdir /tmp/multit && cp target/release/multit /tmp/multit
-      - run: ghr v0.1.0 /tmp/multit
+      - run: /home/circleci/go/ghr v0.1.0 /tmp/multit
