@@ -6,9 +6,10 @@ jobs:
       - image: cimg/rust:1.60.0
     steps:
       - checkout
-      - run: cargo build --release
-      - run: mkdir /tmp/release
-      - run: ls target/release/
-      - store_artifacts:
-          path: target/release/multit
-          destination: multit-0.1.0
+      - run: which go
+      # - run: cargo build --release
+      # - run: mkdir /tmp/release
+      # - run: ls target/release/
+      # - store_artifacts:
+      #     path: target/release/multit
+      #     destination: multit-0.1.0
