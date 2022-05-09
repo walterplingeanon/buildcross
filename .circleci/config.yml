@@ -5,16 +5,14 @@ jobs:
     docker:
       - image: cimg/rust:1.60.0
     steps:
-      - attach_workspace:
-          at: ./artifacts
+      # - attach_workspace:
+      #     at: ./artifacts
       - checkout
       # - run: sudo apt update && sudo apt upgrade
       # - run: sudo apt install -y golang
       # - run: go get github.com/tcnksm/ghr
       - run: cargo build --release
-      - run: mkdir /tmp/release
-      - run: ls target/release/
       - store_artifacts:
           path: target/release/multit
           destination: multit-0.1.0
-      - run: ls ./artifacts
+      - run: ls ./artifacts || true
