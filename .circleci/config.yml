@@ -9,7 +9,7 @@ jobs:
       - run: sudo apt update && sudo apt upgrade
       - run: sudo apt install -y golang
       - run: go get github.com/tcnksm/ghr
-      - run: ls /home/circleci
+      - run: ls /home/circleci/go
       # - run: cargo build --release
       # - run: mkdir /tmp/multit && cp target/release/multit /tmp/multit
       # - run: /home/circleci/go/ghr v0.1.0 /tmp/multit
