@@ -8,5 +8,6 @@ jobs:
       - checkout
       - run: cargo build --release
       - run: mkdir /tmp/release
-      - store_artifacts:
-          path: /tmp/release
+      - run: ls target/release/
+      # - store_artifacts:
+      #     path: target/release/multit
