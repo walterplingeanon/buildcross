@@ -6,11 +6,8 @@ jobs:
       - image: cimg/rust:1.60.0
     working_directory: /tmp
     steps:
-      - run:
-          name: Creating Dummy Artifacts
-          command: |
-            mkdir /tmp/artifacts
       - checkout
+      - run: mkdir /tmp/artifacts
       - run: cargo build --release
       - store_artifacts:
           path: /tmp/artifacts
