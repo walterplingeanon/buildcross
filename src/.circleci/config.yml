@@ -1,9 +1,0 @@
-version: 2.1
-
-jobs:
-  build:
-    docker:
-      - image: cimg/rust:1.60.0
-    steps:
-      - checkout
-      - run: cargo build --release --target x86_64-pc-windows-msvc
