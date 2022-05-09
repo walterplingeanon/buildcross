@@ -7,5 +7,6 @@ jobs:
     steps:
       - checkout
       - run: cargo build --release
+      - run: ls -larth
       - store_artifacts:
           path: /target/release/.multit
