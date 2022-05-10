@@ -9,7 +9,7 @@ jobs:
       - run: cargo build --release
       - run: mkdir release && cp target/release/multit release
       - run: wget https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gz && tar -xvf ghr_v0.14.0_linux_amd64.tar.gz
-      - run: ./ghr_v0.14.0_linux_amd64/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete 0.1.1 release/
+      - run: ./ghr_v0.14.0_linux_amd64/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete `git describe --tags` release/
       # - run: which ghr
       # - run: mkdir /tmp/multit && cp target/release/multit /tmp/multit
       # - run: ./home/circleci/go/bin/ghr v0.1.0 /tmp/multi
