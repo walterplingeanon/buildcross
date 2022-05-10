@@ -9,7 +9,7 @@ jobs:
       - run: sudo apt update && sudo apt upgrade
       - run: sudo apt install -y golang
       - run: sudo go get github.com/tcnksm/ghr
-      - run: sudo chown -R circleci:circleci /home/circleci/go
+      # - run: sudo chown -R circleci:circleci /home/circleci/go
       - run: sudo ls /home/circleci/go/bin/
       # - run: sudo cp /home/circleci/go/bin/ghr /usr/local/bin
       # - run: which ghr
