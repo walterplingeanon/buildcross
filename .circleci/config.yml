@@ -6,15 +6,16 @@ jobs:
       - image: cimg/rust:1.60.0
     steps:
       - checkout
-      - run: sudo apt update && sudo apt upgrade
-      - run: sudo apt install -y golang
-      - run: sudo go install github.com/tcnksm/ghr@latest
+      - run: wget https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gz && tar -xvf ghr_v0.14.0_linux_amd64.tar.gz
+      - run: ./ghr_v0.14.0_linux_amd64/ghr -v
+      # - run: sudo apt install -y golang
+      # - run: sudo go install github.com/tcnksm/ghr@latest
       # - run: sudo chown -R circleci:circleci /home/circleci/go
       # - run: sudo ls /home/circleci/go/bin/
       # - run: sudo cp /home/circleci/go/bin/ghr /usr/local/bin
       # - run: which ghr
-      - run: cargo build --release
-      - run: sudo cp /home/circleci/go/bin/ghr /usr/local/bin
-      - run: which ghr
+      # - run: cargo build --release
+      # - run: sudo cp /home/circleci/go/bin/ghr /usr/local/bin
+      # - run: which ghr
       # - run: mkdir /tmp/multit && cp target/release/multit /tmp/multit
       # - run: ./home/circleci/go/bin/ghr v0.1.0 /tmp/multit
