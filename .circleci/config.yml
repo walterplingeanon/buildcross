@@ -12,4 +12,4 @@ jobs:
       - run: ./ghr_v0.14.0_linux_amd64/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete 0.1.0 release/
       # - run: which ghr
       # - run: mkdir /tmp/multit && cp target/release/multit /tmp/multit
-      # - run: ./home/circleci/go/bin/ghr v0.1.0 /tmp/multit
+      # - run: ./home/circleci/go/bin/ghr v0.1.0 /tmp/multi
