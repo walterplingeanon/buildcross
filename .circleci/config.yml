@@ -8,11 +8,13 @@ jobs:
       - checkout
       - run: sudo apt update && sudo apt upgrade
       - run: sudo apt install -y golang
-      - run: sudo go get github.com/tcnksm/ghr
+      - run: sudo go install github.com/tcnksm/ghr
       # - run: sudo chown -R circleci:circleci /home/circleci/go
-      - run: sudo ls /home/circleci/go/bin/
+      # - run: sudo ls /home/circleci/go/bin/
       # - run: sudo cp /home/circleci/go/bin/ghr /usr/local/bin
       # - run: which ghr
-      # - run: cargo build --release
+      - run: cargo build --release
+      - run: sudo cp /home/circleci/go/bin/ghr /usr/local/bin
+      - run: which ghr
       # - run: mkdir /tmp/multit && cp target/release/multit /tmp/multit
       # - run: ./home/circleci/go/bin/ghr v0.1.0 /tmp/multit
