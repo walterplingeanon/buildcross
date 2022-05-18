@@ -16,6 +16,7 @@ jobs:
     docker:
       - image: rustembedded/cross:x86_64-pc-windows-gnu
     steps:
+      - run: export HOME=/root/
       - run: curl -sSf https://sh.rustup.rs | sh -s -- -y
       - run: . $HOME/.cargo/env
       - run: rustup target add x86_64-pc-windows-gnu
