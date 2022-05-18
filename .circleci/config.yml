@@ -14,15 +14,16 @@ jobs:
   #     - run: ./ghr_v0.14.0_linux_amd64/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete 0.1.0-linux release/
   build-windows:
     docker:
-      - image: rustembedded/cross:x86_64-pc-windows-gnu-0.2.1
+      - image: cimg/rust:1.60.0
+        environment:
+          CROSS_DOCKER_IN_DOCKER: true
     steps:
+      - run: cargo install cross
       - checkout
-      - run: curl https://sh.rustup.rs -sSf | sh -s -- -y
-      - run: ls /root/project
-      # - run: .cargo/bin/cargo build --release --target x86_64-pc-windows-gnu
-      # - run: mkdir release && cp target/x86_64-pc-windows-gnu/release/multit release/multit-windows
-      # - run: wget https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gz && tar -xvf ghr_v0.14.0_linux_amd64.tar.gz
-      # - run: ./ghr_v0.14.0_linux_amd64/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete 0.1.0-windows release/
+      - run: cross build --release --target x86_64-pc-windows-gnu
+      - run: mkdir release && cp target/x86_64-pc-windows-gnu/release/multit release/multit-windows
+      - run: wget https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gz && tar -xvf ghr_v0.14.0_linux_amd64.tar.gz
+      - run: ./ghr_v0.14.0_linux_amd64/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete 0.1.0-windows release/
 workflows:
   version: 2
   build:
