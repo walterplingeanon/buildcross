@@ -17,7 +17,7 @@ jobs:
       - image: rustembedded/cross:x86_64-pc-windows-gnu
     steps:
       - run: curl -sSf https://sh.rustup.rs | sh -s -- -y
-      - run: . /root/.cargo/env
+      - run: . /tmp/home/.cargo/env
       - run: rustup target add x86_64-pc-windows-gnu
       - checkout
       - run: cargo build --release --target x86_64-pc-windows-gnu
