@@ -15,16 +15,16 @@ jobs:
   build-windows:
     docker:
       - image: cimg/rust:1.60.0
-        environment:
-          CROSS_DOCKER_IN_DOCKER: true
     steps:
-      - run: which docker
-      # - run: cargo install cross
-      # - checkout
+      - run: export CROSS_DOCKER_IN_DOCKER=true
+      - run: cargo install cross
+      - checkout
       # - run: cross build --release --target x86_64-pc-windows-gnu
-      # - run: mkdir release && cp target/x86_64-pc-windows-gnu/release/multit release/multit-windows
-      # - run: wget https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gz && tar -xvf ghr_v0.14.0_linux_amd64.tar.gz
-      # - run: ./ghr_v0.14.0_linux_amd64/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete 0.1.0-windows release/
+      - run: docker run -v /var/run/docker.sock:/var/run/docker.sock -v .:/project -w /project cimg/rust:1.60.0 cross build --target x86_64-pc-windows-gnu --release
+      - run: ls -larth .
+      - run: mkdir release && cp target/x86_64-pc-windows-gnu/release/multit release/multit-windows
+      - run: wget https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gz && tar -xvf ghr_v0.14.0_linux_amd64.tar.gz
+      - run: ./ghr_v0.14.0_linux_amd64/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete 0.1.0-windows release/
 workflows:
   version: 2
   build:
