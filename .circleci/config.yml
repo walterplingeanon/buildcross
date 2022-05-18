@@ -27,8 +27,8 @@ jobs:
       # - run: mkdir release && cp target/x86_64-pc-windows-gnu/release/multit.exe release/multit-windows.exe
       # - run: curl -LO https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gz && tar -xvf ghr_v0.14.0_linux_amd64.tar.gz
       # - run: ./ghr_v0.14.0_linux_amd64/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete 0.1.0-windows release/
-workflows:
-  version: 2
-  build:
-    jobs:
-      - build-windows
+# workflows:
+#   version: 2
+#   build:
+#     jobs:
+#       - build-windows
