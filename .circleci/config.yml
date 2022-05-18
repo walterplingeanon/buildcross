@@ -20,6 +20,7 @@ jobs:
       - run: cargo install cross
       - checkout
       # - run: cross build --release --target x86_64-pc-windows-gnu
+      - run: systemctl start docker
       - run: docker run -v /var/run/docker.sock:/var/run/docker.sock -v .:/project -w /project cimg/rust:1.60.0 cross build --target x86_64-pc-windows-gnu --release
       - run: ls -larth .
       - run: mkdir release && cp target/x86_64-pc-windows-gnu/release/multit release/multit-windows
