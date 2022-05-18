@@ -17,6 +17,7 @@ jobs:
       - image: taxrt2020/rustcross:latest
     steps:
       - checkout
+      - run: export PATH=$PATH:/user/.cargo/bin
       - run: cargo build --release --target x86_64-pc-windows-gnu
       - run: mkdir release && cp target/x86_64-pc-windows-gnu/release/multit.exe release/multit-windows.exe
       - run: ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete 0.1.0-windows release/
