@@ -2,23 +2,28 @@
 #![allow(unused_imports)]
 #![allow(clippy::module_inception)]
 
-mod windows;
-mod linux;
-mod ios;
 mod features;
+mod ios;
+mod linux;
+mod windows;
 
-use windows::*;
-use linux::*;
-use ios::*;
 use features::*;
+use ios::*;
+use linux::*;
+use windows::*;
 
 use std::io;
 
 fn main() -> io::Result<()> {
     print();
-    
+
     #[cfg(feature = "test")]
     print_feature();
-    
+
     Ok(())
+}
+
+#[test]
+fn test() {
+    assert_eq!(1, 2);
 }

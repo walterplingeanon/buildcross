@@ -1,26 +1,16 @@
 version: 2.1
 
 jobs:
-  # build-linux:
-  #   docker:
-  #     - image: cimg/rust:1.60.0
-  #       environment:
-  #         CROSS_DOCKER_IN_DOCKER=true
-  #   steps:
-  #     - checkout
-  #     - run: cargo build --release
-  #     - run: mkdir release && cp target/release/multit release/multit-linux
-  #     - run: curl https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gz && tar -xvf ghr_v0.14.0_linux_amd64.tar.gz
-  #     - run: ./ghr_v0.14.0_linux_amd64/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete 0.1.0-linux release/
-  build-windows:
+  build-linux:
     docker:
-      - image: taxrt2020/rustcross:latest
+      - image: cimg/rust:1.60.0
     steps:
       - checkout
-      - run: export PATH=$PATH:/user/.cargo/bin
-      - run: cargo build --release --target x86_64-pc-windows-gnu
-      - run: mkdir release && cp target/x86_64-pc-windows-gnu/release/multit.exe release/multit-windows.exe
-      - run: ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete 0.1.0-windows release/
+      - run: cargo fmt && cargo clippy -- -D warnings
+      - run: cargo test && cargo build --release
+      - run: mkdir release && cp target/release/multit release/
+      - run: curl https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gz && tar -xvf ghr_v0.14.0_linux_amd64.tar.gz
+      - run: ./ghr_v0.14.0_linux_amd64/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete 0.1.0-linux release/
 workflows:
   version: 2
   build:
